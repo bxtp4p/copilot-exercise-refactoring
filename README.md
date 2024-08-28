@@ -1,7 +1,7 @@
 
 # GitHub Copilot Prompt Engineering Exercise: Refactoring
 
-This exercise focuses on refactoring. Refactor the applicationto improve its structure, readability, and maintainability.
+This exercise focuses on refactoring. Refactor the application to improve its structure, readability, and maintainability.
 
 ## Instructions
 
