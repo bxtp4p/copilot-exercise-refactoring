@@ -1,9 +1,20 @@
 
-# GitHub Copilot Prompt Engineering Exercise: Refactoring
+# Refactoring Code with GitHub Copilot
 
-This exercise focuses on refactoring. Refactor the application to improve its structure, readability, and maintainability.
+## Overview
 
-## Instructions
+This exercise focuses on crafting effective prompts to generate high-quality code. Your goal is to refine the way you communicate with GitHub Copilot to produce clean, structured, and maintainable code. By iterating on your prompts, you'll learn how to guide GitHub Copilot to assist you in generating the desired results.
+
+## Learning Objectives
+
+By the end of this exercise, you should be able to:
+1. **Craft Effective Prompts**: Formulate clear and concise prompts that guide the AI to generate high-quality, functional code.
+2. **Iterate and Improve Prompts**: Refine your prompts through iteration to optimize the generated code’s structure and readability.
+3. **Identify Prompt Impact**: Understand how different prompt variations impact the AI’s code output, including readability, maintainability, and adherence to coding best practices.
+4. **Incorporate Best Practices**: Use prompts to encourage the AI to apply design patterns, naming conventions, and clean code principles.
+5. **Troubleshoot Prompt-Generated Code**: Diagnose and correct issues in generated code by adjusting the prompt rather than manually editing the code.
+
+## Prerequisites
 
 This exercise uses the [Calculator app](https://github.com/bxtp4p/copilot-app-calculator) repository. Clone the repository and follow the instructions in the README to get started.
 
@@ -11,63 +22,92 @@ This exercise uses the [Calculator app](https://github.com/bxtp4p/copilot-app-ca
 git clone https://github.com/bxtp4p/copilot-app-calculator.git
 cd copilot-app-calculator
 ```
+## Setup
 
-## Problem
+Follow the setup instructions in the [Calculator app](https://github.com/bxtp4p/copilot-app-calculator) repository.
 
-The code in the `Calculator` class has a number of [code smells](https://refactoring.guru/refactoring/smells) that make it difficult to read and maintain:
+## Problem Statement
 
-- **Large Class/Too Many Responsibilities (God Object):**
+The `Calculator` class contains several [design issues]([url](https://refactoring.guru/refactoring/smells)) that make it difficult to read, maintain, and extend. These include:
 
-  - The `Calculator` class handles many unrelated responsibilities: basic arithmetic, file I/O, and circle area calculation. It violates the Single Responsibility Principle (SRP).
+- **God Object (Too Many Responsibilities)**:  
+  The `Calculator` class is overloaded with unrelated tasks, such as basic arithmetic operations, file input/output, and circle area calculations, violating the Single Responsibility Principle (SRP).
 
-- **Long Method:**
+- **Class Overload**:  
+  The class has an excessive number of methods, even though individual methods are not lengthy. These methods should be distributed across separate classes or modules.
 
-  - While individual methods are not very long, the class itself has too many methods, which can be split into different classes or modules.
+- **Duplicate Code**:  
+  Repeated logic is used in multiple methods to update `self.result` and manage `self.history`, leading to redundancy.
 
-- **Duplicated Code:**
+- **Inconsistent Error Handling**:  
+  The `divide` method handles division by zero with a print statement, unlike the return-based error handling used elsewhere in the class.
 
-  - Similar logic is repeated across methods for updating `self.result` and appending to `self.history`.
+- **Inappropriate Access to Data**:  
+  The `save_to_file` and `load_from_file` methods directly access and manipulate the `history` attribute, violating principles of encapsulation.
 
-- **Inconsistent Error Handling:**
+- **Responsibility Misalignment**:  
+  The `save_to_file` and `load_from_file` methods are responsible for file operations, which should be delegated to a dedicated file handler class instead.
 
-  - The `divide` method uses a print statement to handle division by zero, which is inconsistent with the return-based approach used elsewhere.
+- **Primitive Obsession**:  
+  The calculation history is stored as a simple list of strings, where a more meaningful data structure, such as a custom class or object, would better represent the history.
 
-- **Inappropriate Intimacy:**
+- **Long Parameter Lists**:  
+  Methods like `add`, `subtract`, and `multiply` take multiple parameters, making them harder to read and increasing the likelihood of errors.
 
-  - The `save_to_file` and `load_from_file` methods directly manipulate the history attribute, which should be encapsulated.
-
-- **Feature Envy:**
-
-  - The methods `save_to_file` and `load_from_file` demonstrate feature envy by directly handling file operations instead of delegating to a separate file handler class.
-
-- **Primitive Obsession:**
-
-  - The history is stored as a list of strings. A more appropriate data structure, such as a custom class or objects, could be used to represent calculation history more clearly.
-
-- **Long Parameter List:**
-
-  - Some methods take multiple parameters (`add`, `subtract`, `multiply`, etc.), making them harder to read and maintain.
-
-- **Global Variable (Hidden Dependency):**
-
-  - The use of `math.pi` directly instead of a constant defined in the class or module makes the code harder to test and maintain.
+- **Hidden Dependency**:  
+  The use of `math.pi` directly instead of defining a constant within the class or module introduces a hidden dependency, making the code less maintainable and testable.
 
 ## Task
 
-Each of the code smells identified provides an opportunity for refactoring. Choose one or more code smells to address and refactor the Calculator class accordingly.
+Utilize effective AI prompt engineering to address the identified code smells in the `Calculator` class. Follow these steps:
+
+1. **Select Code Smells**:
+   - Review the list of code smells provided in the Problem Statement.
+   - Choose one or more code smells you wish to address in the refactoring process.
+
+2. **Craft Prompts**:
+   - Write clear and specific prompts that instruct the AI to refactor the `Calculator` class to eliminate the selected code smells.
+   - Ensure your prompts guide the AI to improve the code’s structure, readability, and maintainability without altering its core functionality.
+
+3. **Generate Refactored Code**:
+   - Use the crafted prompts with the AI tool to generate the refactored version of the `Calculator` class.
+   - Review the generated code to ensure it effectively addresses the chosen code smells.
+
+4. **Iterate and Refine**:
+   - If the initial output does not fully resolve the code smells, refine your prompts for better results.
+   - Repeat the generation process until the refactored code meets the desired quality standards.
+
+5. **Document Changes**:
+   - Provide a summary of the prompts you used and explain how each prompt contributed to resolving specific code smells.
+   - Highlight the improvements made in the refactored `Calculator` class.
 
 ## Expected Outcome
 
-Refactor the Calculator class to address one or more of the identified code smells. The refactored code should be easier to read, maintain, and test.
+Refactor the `Calculator` class to resolve one or more of the identified code smells. The refactored code should demonstrate improved readability, maintainability, and testability without altering its core functionality.
 
-Additionally, generate documentation and tests for the refactored code to ensure that it is well-documented and that future changes can be made with confidence.
+In addition:
+- **Documentation**: Provide clear, concise documentation that explains the structure and purpose of the refactored code.
+- **Unit Tests**: Implement comprehensive tests to validate the functionality of the refactored class, ensuring that future modifications can be made confidently.
+
+The final result should be a cleaner, well-documented, and fully tested codebase that aligns with coding best practices.
 
 ## Tips
 
-- Don't expect GitHub Copilot to produce perfect results, all of the time. It's a tool to help you write code, but it's up to you to decide what to do with its suggestions. Feel free to modify the code as you see fit.
+### Prompting Tips
+- **Be Specific**: Clearly state which code smells you’re targeting in your prompts to guide the AI effectively.
+- **Iterate and Refine**: Don’t expect perfect results on the first try—refine your prompts based on the AI’s output to improve the generated code.
+- **Prioritize Clarity**: Ensure your prompts are clear and concise to reduce ambiguity in the code generation process.
+- **Preserve Functionality**: While refactoring, ensure that the core functionality of the `Calculator` class remains intact.
 
-- If you don't understand how to do something, or if you get stuck, don't hesitate to ask GitHub Copilot Chat for help. Think of it as a seasoned expert in the thing you're trying to do who can help guide you in the right direction. Don't be afraid to ask it questions! For example, if you don't know what Primitive Obsession is, you could ask, "What is Primitive Obsession?" and it will give you a brief explanation.
+### GitHub Copilot Best Practices
+- **Manage Expectations**: GitHub Copilot won’t always produce flawless code. Use its suggestions as a starting point, and don’t hesitate to modify the code as necessary to meet your needs.
+- **Ask for Help**: If you’re unsure about a concept or get stuck, ask GitHub Copilot Chat for assistance. It can act as an expert guide. For example, if you need clarification on a term like "Primitive Obsession," ask, *"What is Primitive Obsession?"* and it will provide a helpful explanation.
+- **Use Copilot Chat Commands**: If you’re unsure how to use GitHub Copilot Chat, use the `/help` command to view a list of available commands for guidance.
 
-- If you don't remember how to do something with GitHub Copilot Chat, use the `/help` command to see a list of available commands.
+### Example Solution
+- An example of a refactored solution is available in the [`copilot-exercise-refactoring-completed`](https://github.com/bxtp4p/copilot-app-calculator/tree/copilot-exercise-refactoring-completed) branch of the [Calculator](https://github.com/bxtp4p/copilot-app-calculator) repository. Keep in mind, this is just one possible approach. Feel free to experiment with different refactoring strategies.
+- If you're stuck, you can also refer to the [completed](https://github.com/bxtp4p/copilot-exercise-refactoring/tree/completed) branch, which includes the prompts used to generate the solution. You’ll find these prompts in the `/completed` directory.
 
-- An example result of this exercise can be found in the [`copilot-exercise-refactoring-completed`](https://github.com/bxtp4p/copilot-app-calculator/tree/copilot-exercise-refactoring-completed) branch of the [Calculator](https://github.com/bxtp4p/copilot-app-calculator) repo. Note that this is just one possible solution, and there are many other ways to refactor the code. Feel free to experiment and try different approaches. If you're still stuck, you can refer to the [completed](https://github.com/bxtp4p/copilot-exercise-refactoring/tree/completed) branch in this repo for the prompts used to generate the results. Prompts will be located in the `/completed` directory.
+---
+
+This version is more concise and organized, making it easier to follow while still covering the essential tips.
