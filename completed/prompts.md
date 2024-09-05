@@ -1,6 +1,9 @@
 # Refactoring Prompts
 
-Below are the list of prompts used to generate the final state. The prompts are designed to guide the user through the process of refactoring the code.
+Below are the list of prompts used to generate the final state. The prompts are designed to guide the user through the process of refactoring the code. The user can choose to follow the prompts in order, or skip around as needed. The prompts are designed to be flexible and can be adapted to the specific needs of the user.
+
+
+**Note:** All prompts done in Visual Studio Code. Some agents and slash commands may not be available in other IDEs.
 
 ## Task: Single Responsibility Principle
 
