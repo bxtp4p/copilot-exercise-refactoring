@@ -107,7 +107,3 @@ The final result should be a cleaner, well-documented, and fully tested codebase
 ### Example Solution
 - An example of a refactored solution is available in the [`copilot-exercise-refactoring-completed`](https://github.com/bxtp4p/copilot-app-calculator/tree/copilot-exercise-refactoring-completed) branch of the [Calculator](https://github.com/bxtp4p/copilot-app-calculator) repository. Keep in mind, this is just one possible approach. Feel free to experiment with different refactoring strategies.
 - If you're stuck, you can also refer to the [completed](https://github.com/bxtp4p/copilot-exercise-refactoring/tree/completed) branch, which includes the prompts used to generate the solution. You’ll find these prompts in the `/completed` directory.
-
----
-
-This version is more concise and organized, making it easier to follow while still covering the essential tips.
